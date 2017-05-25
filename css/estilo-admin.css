@@ -1,0 +1,40 @@
+[title=ilustración]{
+
+    width: 100px;
+}
+
+#img-actual img{
+
+    width: 100%;
+}
+
+.btn,.form-control{
+
+    margin: 15px 0px 15px 0px;
+}
+
+td,th{
+
+    vertical-align: middle !important;
+}
+
+td>img,[title=imagen]{
+
+    width: 100%;
+}
+
+.productos td:nth-child(5),.productos th:nth-child(5){
+
+    max-width: 100px;
+
+}
+
+.panel{
+    margin-top: 25px;
+}
+
+
+span.text-danger{
+    visibility: hidden;
+}
+

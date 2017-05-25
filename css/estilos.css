@@ -1,0 +1,187 @@
+@font-face{
+    src: url("../fonts/OpenSans-Regular.ttf");
+    font-family: openSans;
+}
+
+*{
+    font-family: openSans ;
+}
+
+/*ajuste de la interfaz*/
+
+header,.nav>li>a{
+
+    color: #fff;
+    text-shadow: none !important;
+    -moz-text-shadow: none !important;
+    -webkit-text-shadow: none !important;
+}
+
+.logo,.ilustracion{
+    width: 100%;
+}
+
+.nav>li>a{
+
+    transition:color 0.3s, background-color 0.3s linear 0s;
+    -moz-transition:color 0.3s, background-color 0.3s linear 0s;
+    -webkit-transition:color 0.3s, background-color 0.3s linear 0s;
+
+}
+
+.nav>li>a:hover,.nav>li>a:focus{
+
+    background-color: #fff;  
+    color:#008c9e; 
+}
+header,nav{
+    border: 0px !important;
+    background-color: #008c9e;
+}
+
+section{
+
+    min-height: 555px;
+}
+
+#wallPaper{
+    color: #000;
+    background-image: url("alarma_kit.jpg");
+    border-bottom: 2px solid #343838;
+}
+
+#wallPaper h1{
+
+    background-color: rgba(255,255,255,0.5);
+}
+
+footer{
+    height: 40px;
+    background-color: #343838;
+    text-align: center;
+    
+}
+
+footer a{
+
+    color: rgb(200,200,200) !important;
+}
+
+footer p{
+    margin: 10px 0px 0px 0px;
+}
+
+/*ajustes para todas las resoluciones*/
+
+.novedad{
+
+    height: 300px !important;
+    margin: 5px 0px 5px 0px;
+    overflow: hidden;
+}
+
+.producto{
+    border: solid 1px rgba(0,0,0,0.5);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.producto img{
+        width: 100%;
+    }
+
+.novedad img{
+
+    width: 80% !important;
+    margin: 0% 10% 0% 10% !important;
+}
+
+.producto a,.novedad a,.producto a:active,.novedad a:active{
+    text-decoration: none;
+    color: #000;
+}
+
+.boton-menu{
+        display: none;
+    }
+
+.label-info{
+        display: block;
+        font-size: 1.3rem;
+    }
+
+
+@media screen and (max-width: 767px){
+    
+    html{
+        font-size: 12pt;
+    }
+
+    .boton-menu{
+        display: block;
+        height: 100% !important;
+        cursor: pointer;
+    }
+
+    nav{
+        display: none;
+    }
+
+    .producto{
+        height: 100px;
+    }
+
+    p.descripcion-articulo{
+        font-size: 16pt;
+    }
+
+    .label-info{
+        width: 100%;
+    }
+}
+
+
+@media screen and (min-width: 768px){
+
+html{
+    font-size: 14pt;
+    }
+
+    p{
+
+        font-size: 1rem;
+    }
+
+    .producto{
+        height: 150px;
+        overflow: hidden;
+    }
+
+    
+}
+
+/*ajustes de tipografia*/
+h1{
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.75rem;
+}
+
+h3{
+    font-size: 1.5rem;
+}
+
+h4{
+    font-size: 1.25rem;
+}
+
+h5{
+    font-size: 1rem;
+}
+
+h6{
+    font-size: 0.75rem;
+}
