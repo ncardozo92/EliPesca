@@ -2,7 +2,9 @@
 <html lang="es">
 
 <head>
-	@include("templates/metadata")
+	<?php
+		$this->load->view("templates/metadata");
+	?>
 	<title>Modulo Administrador</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
 	<script>
@@ -14,7 +16,7 @@
 
 				$scope.traerTodas = function(){
 
-					$http.get('getCategorias').then(function(respose){
+					$http.get('get_categorias').then(function(respose){
 
 						$scope.listado = respose.data;
 						
@@ -24,7 +26,7 @@
 				$scope.guardarCategoria = function(){
 
 					var categoria = {nombre : $scope.nombreCategoria};
-					$http.post("guardarCategoria",categoria)
+					$http.post("guardar_categoria",categoria)
 					.then(function(response){
 
 					$scope.nombreCategoria = '';
@@ -34,7 +36,7 @@
 
 				$scope.eliminarCategoria = function(id){
 
-					$http.post('eliminarCategoria',{'id' : id})
+					$http.post('eliminar_categoria',{'id' : id})
 					.then(function(response){
 						$scope.traerTodas();
 					},
@@ -49,8 +51,10 @@
 </head>
 
 <body>
-	@include("templates/header")
-	@include("templates/navbar-admin")
+	<?php
+		$this->load->view("templates/header");
+		$this->load->view("templates/navbar-admin");
+	?>
 	<section ng-app="gestorCategorias" ng-controller="gestorCategoriasCtrl" ng-init="traerTodas()">
 	<div class="container">
 		<div class="row">
@@ -83,7 +87,6 @@
 							<th>Nombre</th>
 							<th>Acción</th>
 						</tr>
-						@verbatim
 						<tr ng-repeat="categoria in listado">
 							<td>{{categoria.id}}</td>
 							<td>{{categoria.nombre}}</td>
@@ -93,13 +96,13 @@
 								</label>
 							</td>
 						</tr>
-						@endverbatim
 					</table>
 				</div>
 			</div>
 		</div>
 	</section>
-	@include("templates/footer")
-	
+	<?php
+		$this->load->view("templates/footer");
+	?>
 </body>
 </html>

@@ -2,13 +2,17 @@
 <html lang="es">
 
 <head>
-	@include("templates/metadata")
+	<?php
+		$this->load->view("templates/metadata");
+	?>
 	<title>Modulo Administrador</title>
 </head>
 
 <body>
-	@include("templates/header")
-	@include("templates/navbar-admin")
+	<?php
+		$this->load->view("templates/header");
+		$this->load->view("templates/navbar-admin");
+	?>
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-sm-10 col-sm-push-1">
@@ -17,14 +21,13 @@
 						<h4 class="panel-title">Crear producto</h4>
 					</div>
 					<div class="panel-body">
-						<form action="crear-producto" method="POST" enctype="multipart/form-data">
-							{{ csrf_field() }}
-							@if(count($errors) >0)
+						<form action="agregar_producto" method="POST" enctype="multipart/form-data">
+							<!--@if(count($errors) >0)
 							<div class="alert alert-danger text-center">
 								Hubo un error al enviar los datos, por favor vuelva a intentarlo
 							</div>
 							@endif
-
+							-->
 							<div class="form-group">
 								<label>ingrese nombre:</label>
 								<input type="text" name="nombre" class="form-control"/>
@@ -56,9 +59,9 @@
 								<label>Seleccione categoría:</label>
 								<select name="categoria" class="form-control">
 									<option value="null">Seleccione</option>
-									@foreach($categorias as $categoria)
-										<option value="{{$categoria->id_categoria}}">{{$categoria->nombre}}</option>
-									@endforeach
+									<?php foreach($categorias as $categoria): ?>
+										<option value="<?php echo $categoria->id_categoria; ?>"><?php echo $categoria->nombre; ?></option>
+									<?php endforeach; ?>
 								</select>
 							</div>
 							<div class="form-group col-xs-12 col-sm-4">
@@ -68,7 +71,7 @@
 							</div>
 							<div class="btn-group col-xs-12">
 								<button name="crear" id="crear" class="btn btn-success">Crear</button>
-								<a href="productos-admin" class="btn btn-danger">Cancelar</a>
+								<a href="productos" class="btn btn-danger">Cancelar</a>
 							</div>
 						</form>
 					</div>
@@ -77,11 +80,13 @@
 		</div>
 	</div>
 	
-    @include("templates/footer")
+    <?php
+		$this->load->view("templates/footer");
+	?>
 	<!--<script src="js/wysihtml5/parser_rules/simple.js"></script>
 	<script src="js/wysihtml5/dist/wysihtml5-0.2.0.js"></script>
 	<script src="js/configuracion-wysihtml5.js"></script>-->
-	<script src="js/validaciones/validar-producto.js"></script>
-	<script src="js/validaciones/mostrar-alertas.js"></script>
+	<script src="<?php echo base_url(); ?>js/validaciones/validar-producto.js"></script>
+	<script src="<?php echo base_url(); ?>js/validaciones/mostrar-alertas.js"></script>
 </body>
 </html>

@@ -33,8 +33,6 @@
 
            if(count($usuarioEncontrado->result()) ==1){
 
-               echo $usuarioEncontrado->row()->nombre;
-                
                 $this->session->set_userdata('usuario', $usuarioEncontrado->row()->nombre);
                 $this->session->set_userdata('id', $usuarioEncontrado->row()->id_admin);
                 $this->session->unset_userdata('authError');
@@ -62,6 +60,8 @@
 
         public function get_productos(){
 
+            $this->verificar_sesion();
+
             $query = "
             select p.id_producto id, p.nombre nombre, p.descripcion descripcion, c.nombre categoria, p.img imagen, p.precio precio
             from producto p inner join categoria c on p.id_categoria = c.id_categoria";
@@ -72,6 +72,106 @@
             
         }
 
+        public function alta_producto(){
 
+            $this->verificar_sesion();
+
+            $categorias = $this->db->query("select * from categoria");
+
+            $this->load->view('administrador/alta-producto',array('categorias' => $categorias -> result()));
+        }
+
+        public function agregar_producto(){
+
+            $this->verificar_sesion();
+
+            date_default_timezone_set("America/Argentina/Buenos_Aires");
+            
+            $config['upload_path'] = './img_productos/';
+            $config['allowed_types'] = 'jpg|png';
+            $config['max_width'] = 0;
+            $config['file_name'] = date("dmYHis",time());
+            //esta configuracion es la que yo le indico, hay muchas mas opciones
+            $this->load->library('upload', $config); //se carga la libreria que corresponde con la configuracion
+           
+            if($this->upload->do_upload('imagen'))
+                $nombreArchivo = $config['file_name'] . $this->upload->data('file_ext');
+            else
+                $nombreArchivo = null;
+            
+            $this->db->insert('producto', array(
+                'nombre' => $this->input->post('nombre'),
+                'descripcion' => $this->input->post('descripcion'),
+                'id_categoria' => $this->input->post('categoria'),
+                'precio' => $this->input->post('precio'),
+                'img' => $nombreArchivo
+            ));
+
+            redirect('admin/productos');
+            
+        }
+
+        public function actualizar_producto(){
+
+             echo 'en desarrollo';
+        }
+
+        public function eliminar_producto(){
+
+             echo 'en desarrollo';
+        }
+
+        public function categorias(){
+
+            $this->verificar_sesion();
+            $this->load->view('administrador/categorias');
+        }
+
+        public function guardar_categoria(){
+
+            $this->verificar_sesion();
+
+            $datos = json_decode(file_get_contents('php://input'));
+
+            $this->db->insert('categoria',array('nombre' => $datos->nombre)); //inserta un dato en la tabla, tomar nota de esto
+        }
+
+        public function eliminar_categoria(){
+
+            $this->verificar_sesion();
+
+            $datos = json_decode(file_get_contents("php://input"));
+
+            $this->db->delete('categoria',array('id_categoria' => $datos->id)); //elimina datos, tomar nota
+        }
+
+        public function get_categorias(){
+
+            $this->verificar_sesion();
+
+            $categorias = $this->db->query("select id_categoria id, nombre nombre from categoria");
+           
+            echo json_encode($categorias->result());
+        }
+
+        public function datos_admin(){
+
+            $this->verificar_sesion();
+            $this->load->view('administrador/cambiar-datos');
+        }
+
+        public function update_datos(){
+
+            $this->verificar_sesion();
+
+            $this->db->where('id_admin',$this->session->userdata('id'));
+            $this->db->update('administrador',array(
+                'nombre' => $this->input->post('usuario'),
+                'clave' => md5($this->input->post('password2'))
+            ));
+
+            $this->cerrar_sesion();
+
+        }
     }
 ?>

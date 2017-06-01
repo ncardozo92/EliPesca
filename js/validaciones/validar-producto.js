@@ -9,13 +9,13 @@ $(function(){
 
         alertas.css("visibility","hidden");
 
-        if(campos.eq(1).val() == "")
+        if(campos.eq(0).val() == "")
                 retorno = mostrarAlerta(0);
 
-        if(campos.eq(2).val() == "")
+        if(campos.eq(1).val() == "")
                 retorno = mostrarAlerta(1);
 
-        if(campos.eq(4).val() == "" || isNaN(campos.eq(4).val()))
+        if(campos.eq(3).val() == "" || isNaN(campos.eq(3).val()))
                 retorno = mostrarAlerta(2);
 
         return retorno;

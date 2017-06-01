@@ -6,7 +6,7 @@
 				<li><a href="categorias">Categorías</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="cambiar-datos">Cambiar datos</a></li>
+				<li><a href="datos_admin">Cambiar datos</a></li>
 				<li><a href="cerrar_sesion">Cerrar sesión</a></li>
 			</ul>
 		</div>

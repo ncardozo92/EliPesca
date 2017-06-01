@@ -18,7 +18,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6">
-					<a href="alta-producto" class="btn btn-default btn-md">Agregar producto</a>
+					<a href="alta_producto" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>Agregar producto</a>
 				</div>
 				<div class="col-xs-6">
 					<form class="form form-vertical">
