@@ -8,7 +8,12 @@
 
             $this->load->database();//para manejar bases de datos
             $this->load->library('session');//para manipular las sesiones
+            $this->load->helper("file");
+
+            date_default_timezone_set("America/Argentina/Buenos_Aires");
         }
+
+        private $path_img_productos = 'img_productos/';
 
         public function index(){
 
@@ -81,13 +86,20 @@
             $this->load->view('administrador/alta-producto',array('categorias' => $categorias -> result()));
         }
 
+        //ajuste de valores para carga de archivos
+
+        private function subir_foto(){
+
+            
+        }
+
         public function agregar_producto(){
 
             $this->verificar_sesion();
 
-            date_default_timezone_set("America/Argentina/Buenos_Aires");
+            //date_default_timezone_set("America/Argentina/Buenos_Aires"); se paso al constructor
             
-            $config['upload_path'] = './img_productos/';
+            $config['upload_path'] = './' . $this->path_img_productos;
             $config['allowed_types'] = 'jpg|png';
             $config['max_width'] = 0;
             $config['file_name'] = date("dmYHis",time());
@@ -111,14 +123,67 @@
             
         }
 
-        public function actualizar_producto(){
+        public function editar_producto($id = null){
 
-             echo 'en desarrollo';
+            $this->verificar_sesion();
+
+             
+
+            $categorias = $this->db->query("select * from categoria");
+
+            $this->db->where(array('id_producto=' => $id));
+            $producto = $this->db->get('producto');
+
+            $this->load->view('administrador/editar-producto',array(
+                'producto' => $producto->row_array(),
+                'path' => base_url() . $this->path_img_productos, //path para la imagen
+                'categorias' => $categorias->result_array()
+                ));
         }
 
-        public function eliminar_producto(){
+        public function actualizar_producto($id){
 
-             echo 'en desarrollo';
+            $this->verificar_sesion();
+
+            $carpeta_imagenes = './' . $this->path_img_productos;
+
+            if($id == null)
+                redirect('productos');
+
+            $config['upload_path'] = './' . $this->path_img_productos;
+            $config['allowed_types'] = 'jpg|png';
+            $config['max_width'] = 0;
+            $config['file_name'] = $this->input->post('img_actual');
+            $config['overwrite'] = true;
+                //esta configuracion es la que yo le indico, hay muchas mas opciones
+            $this->load->library('upload', $config); //se carga la libreria que corresponde con la configuracion
+            $this->upload->do_upload('imagen');
+
+            $this->db->where(array('id_producto' => $id));
+            $this->db->update("producto",array(
+                'nombre'=> $this->input->post('nombre'),
+                'descripcion'=> $this->input->post('descripcion'),
+                'id_categoria'=> $this->input->post('categoria'),
+                //'img'=> $this->input->post('img'),
+                'precio'=> $this->input->post('precio')
+            ));
+            
+            redirect('admin/productos');
+        }
+
+        public function eliminar_producto($id){
+
+             $this->verificar_sesion();
+
+             $this->db->where(array('id_producto' => $id));
+             $producto = $this->db->get('producto');
+
+             unlink('./' . $this->path_img_productos . $producto->row()->img);
+
+             $this->db->where(array('id_producto' => $id));
+             $this->db->delete("producto");
+
+             redirect('admin/productos');
         }
 
         public function categorias(){

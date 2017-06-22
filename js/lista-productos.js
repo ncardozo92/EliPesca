@@ -5,14 +5,14 @@ $(function(){
 
     function insertarCabezeraTabla(){
 
-        listaProductos.html("<tr><th>id</th><th>nombre</th><th>descripcion</th><th>categoria</th><th>imagen</th><th>precio</th></tr>");
+        listaProductos.html("<tr><th>id</th><th>nombre</th><th>descripcion</th><th>categoria</th><th>imagen</th><th>precio</th><th>acciones</th></tr>");
     }
 
     function insertarFilaProducto(item){
                 
             listaProductos
                 .append( "<tr><td>"+item.id+"</td><td>"+item.nombre+"</td><td>"+item.descripcion+
-                    "</td><td>"+item.categoria+"</td><td>"+item.imagen+"</td><td>"+item.precio+"</td></tr>");
+                    "</td><td>"+item.categoria+"</td><td>"+item.imagen+"</td><td>"+item.precio+"</td><td><a href='editar_producto/"+item.id+"'><span class='glyphicon glyphicon-pencil'></span></a><a href='eliminar_producto/"+item.id+"'><span class='glyphicon glyphicon-remove'></span></a></td></tr>");
         }
     
      $("#buscar").on("keyup",function(){
