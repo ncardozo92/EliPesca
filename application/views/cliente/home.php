@@ -11,10 +11,14 @@
 		$this ->load ->view("templates/navbar.php");
 	?>
 	<section>
-		<div class="container-fluid">
+		<div class="container-fluid" id="wallpaper">
 			<div class="row" id="linea-principal">
-				<div class="col-xs-12">
-					<h1 id="slogan">EL SITIO QUE NECESITABAS</H1>
+				<div class="col-xs-12" id="about">
+					<h1 class="text-center">VENTA DE ARTíCULOS DE PESCA</H1>
+					<p>
+						Elipesca es una empresa joven que se encuentra en plena expansión, 
+						ofreciendo los mejores productos para pesca deportiva.
+					</p>
 				</div>
 			</div>
 		</div>

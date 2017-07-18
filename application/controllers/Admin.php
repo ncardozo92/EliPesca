@@ -96,8 +96,6 @@
         public function agregar_producto(){
 
             $this->verificar_sesion();
-
-            //date_default_timezone_set("America/Argentina/Buenos_Aires"); se paso al constructor
             
             $config['upload_path'] = './' . $this->path_img_productos;
             $config['allowed_types'] = 'jpg|png';

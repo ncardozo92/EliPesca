@@ -54,5 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //rutas personalizadas
-$route['actualizar_producto/(:num)'] = 'admin/actualizar_producto/$id';
+$route['actualizar_producto/(:num)'] = 'admin/actualizar_producto/$id'; //actualizacon de producto
+
+$route['productos/(:num)'] = 'producto/catalogo/$pagina';
 $route['productos'] = 'producto/catalogo';
