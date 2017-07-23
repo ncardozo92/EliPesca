@@ -24,12 +24,12 @@
 						<div class="panel-body">
 							<form action="admin/autentificar_admin" method="POST" class="login-user-form">
 								<div class="form-group">
-									<input type="text" id="usuario" name="usuario" class="form-control" placeholder="ingrese usuario" autocomplete="off"/>
+									<input type="text" id="usuario" name="usuario" class="form-control" placeholder="ingrese usuario" autocomplete="off" maxlength="12"/>
 									<span class="text-danger">Ingrese usuario</span>
 								</div>
 
 								<div class="form-group">
-									<input type="password" id="password" name="password" class="form-control" placeholder="ingrese contraseña"/>
+									<input type="password" id="password" name="password" class="form-control" placeholder="ingrese contraseña" maxlength="10"/>
 									<span class="text-danger">Ingrese contraseña</span>
 								</div>
 								<div class="form-group">

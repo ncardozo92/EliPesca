@@ -17,21 +17,52 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-6">
-					<a href="alta_producto" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>Agregar producto</a>
+				<div class="col-xs-12 col-sm-6">
+					<a href="alta_producto" class="btn"><span class="glyphicon glyphicon-plus"></span>Agregar producto</a>
 				</div>
-				<div class="col-xs-6">
-					<form class="form form-vertical">
-						<div class="form-group">
-							<input type="text" id="buscar" class="form-control" placeholder="Buscar por nombre"/>
+				<div class="col-xs-12 col-sm-6">
+					<form class="form form-inline" method="POST" action="productos">
+						<div class="form-group col-xs-6">
+							<input type="text" name="filtro" class="form-control" placeholder="Buscar por nombre"/>
+						</div>
+						<div class="form-group col-xs-6">
+							<button class="form-control btn">Filtrar</button>
 						</div>
 					</form>
 				</div>
 			</div>
 				<div class="row">
-					<div class="col-xs-12">
-						<table id="lista-productos" class="productos table table-responsive table-striped">
-							
+					<div class="col-xs-12  table-responsive">
+						<table id="lista-productos" class="productos table table-striped">
+							<tr>
+								<th>id</th>
+								<th>nombre</th>
+								<th>descripcion</th>
+								<th>categoria</th>
+								<th>imagen</th>
+								<th>precio</th>
+								<th>acciones</th>
+							</tr>
+							<?php foreach($productos as $producto): ?>
+								<tr>
+									<td><?php echo $producto->id; ?></td>
+									<td><?php echo $producto->nombre; ?></td>
+									<td><?php echo $producto->descripcion; ?></td>
+									<td><?php echo $producto->categoria; ?></td>
+									<td>
+										<img src="<?php echo base_url() . $path_img_productos . $producto->imagen; ?>" alt="imagen" title="<?php echo $producto->nombre; ?>"/>
+									</td>
+									<td><?php echo $producto->precio; ?></td>
+									<td>
+										<a href="editar_producto/<?php echo $producto->id; ?>">
+											<span class='glyphicon glyphicon-pencil'></span>
+										</a>
+										<a href="eliminar_producto/<?php echo $producto->id; ?>">
+											<span class='glyphicon glyphicon-remove'></span>
+										</a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
 						</table>
 					</div>
 				</div>
@@ -40,6 +71,6 @@
 	<?php
 		$this->load->view("templates/footer");
 	?>
-	<script src="<?php echo base_url(); ?>js/lista-productos.js"></script>
+	<!--<script src="<?php echo base_url(); ?>js/lista-productos.js"></script>-->
 </body>
 </html>

@@ -59,10 +59,24 @@
         
         public function productos(){
 
+            $filtro = $this->input->post("filtro");
             $this->verificar_sesion();
-            $this->load->view("administrador/productos-admin");
-        }
 
+            $this->db->select("p.id_producto id, p.nombre nombre, p.descripcion descripcion, c.nombre categoria, p.img imagen, p.precio precio")
+                    ->from("producto p")
+                    ->join("categoria c","c.id_categoria = p.id_categoria","INNER");
+
+            if($filtro != null)
+                $this->db->like("p.nombre", $filtro );
+            
+            $productos = $this->db->get()->result();
+
+            //logica para el filtrado por nombre
+            $this->load->view("administrador/productos-admin",
+                array("productos"=>$productos,
+                        "path_img_productos"=>$this->path_img_productos));
+        }
+/*
         public function get_productos(){
 
             $this->verificar_sesion();
@@ -76,7 +90,7 @@
             echo json_encode($productos->result());
             
         }
-
+*/
         public function alta_producto(){
 
             $this->verificar_sesion();

@@ -17,12 +17,14 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title"></h4>
+							<h4 class="modal-title nombre text-center"></h4>
 						</div>
 						<div class="modal-body">
-							<img class="ilustracion" src="<?php echo base_url(); ?>/img_productos/" alt="" title=""/>
-							<p></p>
-							<label></label>
+							<img src="<?php echo base_url(); ?>/img_productos/" alt="producto" title="producto"/>
+							<div class="informacion">
+								<p></p>
+								<label class="label label-info"></label>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -34,7 +36,7 @@
 				<div class="col-xs-12 col-sm-6 col-md-4">
 					<label><span class="glyphicon glyphicon-filter"></span>Filtrar por categoría:</label>
 					<form class="form-inline" action="<?php echo base_url(); ?>productos" method="POST">
-						<div class="form-group col-xs-9">
+						<div class="form-group col-xs-6">
 							<select id="selector-categorias" name="categoria-seleccionada" class="form-control">
 								<option value="">todos</option>
 								<?php foreach($categorias as $categoria): ?>
@@ -46,8 +48,8 @@
 								<?php endforeach; ?>
 							</select>
 						</div>
-						<div class="form-group col-xs-3">
-							<button class="btn btn-info form-control">filtrar</button>
+						<div class="form-group col-xs-6">
+							<button class="btn form-control">filtrar</button>
 						</div>
 					</form>
 					
@@ -57,12 +59,12 @@
 				<?php foreach($productos as $producto): ?>
 					<div class="col-xs-12 col-sm-6 col-md-4 producto" data-toggle="modal" data-target="#info-producto" data-producto="<?php echo $producto->id; ?>">
 						<div class="row">
-							<div class="col-xs-8 col-xs-offset-2 ilustracion">
+							<div class="col-xs-10 col-xs-offset-1 ilustracion">
 								<img  class="" src="<?php echo base_url() . $path_img . $producto->img; ?>" alt="<?php echo $producto->nombre; ?>" title="<?php echo $producto->nombre; ?>"/>
 							</div>
-							<div class="col-xs-8 col-xs-offset-2">
-								<span class="titulo"><?php echo $producto->nombre; ?></span>
-								<label class="precio text-center"><?php echo '$' . $producto->precio; ?></label>
+							<div class="col-xs-10 col-xs-offset-1 informacion">
+								<h6 class="nombre"><?php echo $producto->nombre; ?></h6>
+								<label class="precio label"><?php echo '$' . $producto->precio; ?></label>
 							</div>
 						</div>
 					</div>
