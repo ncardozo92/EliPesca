@@ -201,34 +201,10 @@
         public function categorias(){
 
             $this->verificar_sesion();
-            $this->load->view('administrador/categorias');
-        }
 
-        public function guardar_categoria(){
+             $categorias = $this->db->get("categoria")->result();
 
-            $this->verificar_sesion();
-
-            $datos = json_decode(file_get_contents('php://input'));
-
-            $this->db->insert('categoria',array('nombre' => $datos->nombre)); //inserta un dato en la tabla, tomar nota de esto
-        }
-
-        public function eliminar_categoria(){
-
-            $this->verificar_sesion();
-
-            $datos = json_decode(file_get_contents("php://input"));
-
-            $this->db->delete('categoria',array('id_categoria' => $datos->id)); //elimina datos, tomar nota
-        }
-
-        public function get_categorias(){
-
-            $this->verificar_sesion();
-
-            $categorias = $this->db->query("select id_categoria id, nombre nombre from categoria");
-           
-            echo json_encode($categorias->result());
+            $this->load->view('administrador/categorias', array( "categorias" => $categorias));
         }
 
         public function datos_admin(){
