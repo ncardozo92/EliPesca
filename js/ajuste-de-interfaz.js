@@ -4,10 +4,7 @@ $(function(){
     var wallPaper = $("#wallpaper");
     var about = $("#about");
 
-    if($(window).width() >= 768)
-        $("section").first().css("min-height",($(window).height()-$("header").height()-$("footer").height()-menu.height()));
-    else
-        $("section").first().css("min-height",($(window).height()-$("header").height()));
+    $("section").css("min-height",($(window).height()-$("header").height()-$("footer").height()-menu.height()));
 
     wallPaper.css({"height" : ($(window).height() - $("header").height() - menu.height())});
 

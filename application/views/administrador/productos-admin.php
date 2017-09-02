@@ -23,7 +23,7 @@
 				<div class="col-xs-12 col-sm-6">
 					<form class="form form-inline" method="POST" action="productos">
 						<div class="form-group col-xs-6">
-							<input type="text" name="filtro" class="form-control" placeholder="Buscar por nombre"/>
+							<input type="text" name="filtro" class="form-control" placeholder="Buscar por nombre" value="<?php echo $filtro; ?>"/>
 						</div>
 						<div class="form-group col-xs-6">
 							<button class="form-control btn">Filtrar</button>
@@ -50,14 +50,16 @@
 									<td><?php echo $producto->descripcion; ?></td>
 									<td><?php echo $producto->categoria; ?></td>
 									<td>
+										<?php if($producto->imagen != null): ?>
 										<img src="<?php echo base_url() . $path_img_productos . $producto->imagen; ?>" alt="imagen" title="<?php echo $producto->nombre; ?>"/>
+										<?php endif; ?>
 									</td>
 									<td><?php echo $producto->precio; ?></td>
 									<td>
-										<a href="editar_producto/<?php echo $producto->id; ?>">
+										<a href="<?php echo base_url('admin/editar_producto/' . $producto->id);  ?>">
 											<span class='glyphicon glyphicon-pencil'></span>
 										</a>
-										<a href="eliminar_producto/<?php echo $producto->id; ?>">
+										<a href="<?php echo base_url('producto/eliminar_producto/'. $producto->id); ?>">
 											<span class='glyphicon glyphicon-remove'></span>
 										</a>
 									</td>
@@ -71,6 +73,5 @@
 	<?php
 		$this->load->view("templates/footer");
 	?>
-	<!--<script src="<?php echo base_url(); ?>js/lista-productos.js"></script>-->
 </body>
 </html>

@@ -53,8 +53,12 @@ $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-//rutas personalizadas
+//rutas para admin
 $route['actualizar_producto/(:num)'] = 'admin/actualizar_producto/$id'; //actualizacon de producto
+//rutas para clientes
+$route["home"] = "home";
+$route["contacto"] = "home/contacto";
+$route["excursiones"] = "home/excursiones";
 
-$route['productos/(:num)'] = 'producto/catalogo/$pagina';
 $route['productos'] = 'producto/catalogo';
+//$route['productos/(:num)'] = 'producto/catalogo/$pagina';

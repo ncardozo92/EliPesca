@@ -21,15 +21,15 @@
 						<h4 class="panel-title">Crear producto</h4>
 					</div>
 					<div class="panel-body">
-						<form action="agregar_producto" method="POST" enctype="multipart/form-data">
+						<form action="<?php echo base_url('producto/agregar_producto'); ?>" method="POST" enctype="multipart/form-data">
 							<div class="form-group">
 								<label>ingrese nombre:</label>
-								<input type="text" name="nombre" class="form-control" autocomplete="off"/>
+								<input type="text" name="nombre" value="" class="form-control" autocomplete="off"/>
 								<span class="text-danger">Debe ingresar un nombre</span>
 							</div>
 							<div class="form-group">
 								<label>ingrese breve descripción:</label>
-								<input type="text" name="descripcion" class="form-control" autocomplete="off"/>
+								<input type="text" name="descripcion" value="" class="form-control" autocomplete="off"/>
 								<span class="text-danger">Debe ingresar una descripción breve</span>
 							</div>
 							<!--<div class="form-group">
@@ -61,7 +61,7 @@
 							</div>
 							<div class="form-group col-xs-12 col-sm-4">
 								<label>Asigne un precio:</label>
-								<input type="text" name="precio" class="form-control" autocomplete="off" placeholder="400.00"/>
+								<input type="text" name="precio" class="form-control" value="" autocomplete="off" placeholder="400.00"/>
 								<span class="text-danger">Debe ingresar un precio respetando el ejemplo</span>
 							</div>
 							<div class="btn-group col-xs-12">
@@ -78,10 +78,6 @@
     <?php
 		$this->load->view("templates/footer");
 	?>
-	<!--<script src="js/wysihtml5/parser_rules/simple.js"></script>
-	<script src="js/wysihtml5/dist/wysihtml5-0.2.0.js"></script>
-	<script src="js/configuracion-wysihtml5.js"></script>-->
 	<script src="<?php echo base_url(); ?>js/validaciones/validar-producto.js"></script>
-	<script src="<?php echo base_url(); ?>js/validaciones/mostrar-alertas.js"></script>
 </body>
 </html>

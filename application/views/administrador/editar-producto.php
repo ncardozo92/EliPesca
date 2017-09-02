@@ -21,7 +21,7 @@
 						<h4 class="panel-title">Editar producto</h4>
 					</div>
 					<div class="panel-body">
-						<form action="<?php echo base_url() . 'admin/actualizar_producto/' . $producto['id_producto']; ?>" method="POST" enctype="multipart/form-data">
+						<form action="<?php echo base_url('producto/actualizar_producto/' . $producto['id_producto']); ?>" method="POST" enctype="multipart/form-data">
 							<div class="form-group">
 								<label>ingrese nombre:</label>
 								<input type="text" name="nombre" class="form-control" value="<?php echo $producto['nombre']; ?>" autocomplete="off"/>
@@ -75,6 +75,5 @@
 		$this->load->view("templates/footer");
 	?>
 	<script src="<?php echo base_url(); ?>js/validaciones/validar-producto.js"></script>
-	<script src="<?php echo base_url(); ?>js/validaciones/mostrar-alertas.js"></script>
 </body>
 </html>

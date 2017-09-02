@@ -1,9 +1,10 @@
-<nav role="navigation">
+<nav role="navigation" id="navbar">
 	<div class="container">
-		<ul class="nav navbar-nav" class="dropdown-menu">
-			<li><a href="<?php echo base_url() .'home'; ?>">Inicio</a></li>
-			<li><a href="<?php echo base_url() .'productos'; ?>">Productos</a></li>
-			<li><a href="<?php echo base_url() .'contacto'; ?>">Contacto</a></li>
+		<ul class="nav navbar-nav">
+			<li><a href="home">Inicio</a></li>
+			<li><a href="productos">Productos</a></li>
+			<li><a href="excursiones">excursiones</a></li>
+			<li><a href="contacto">Contacto</a></li>
 		</ul>
 	</div>
 </nav>

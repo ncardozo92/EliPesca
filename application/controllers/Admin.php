@@ -47,14 +47,9 @@
             else{
 
                 $this->session->set_userdata(array('authError' => true));
+                $this->session->mark_as_flash("authError");
                 redirect('admin');
             }
-        }
-
-        private function verificar_sesion(){
-
-            if($this->session->has_userdata('id') == false)
-                redirect('admin');
         }
         
         public function productos(){
@@ -74,23 +69,10 @@
             //logica para el filtrado por nombre
             $this->load->view("administrador/productos-admin",
                 array("productos"=>$productos,
-                        "path_img_productos"=>$this->path_img_productos));
+                        "path_img_productos"=>$this->path_img_productos,
+                        "filtro" => $filtro));
         }
-/*
-        public function get_productos(){
 
-            $this->verificar_sesion();
-
-            $query = "
-            select p.id_producto id, p.nombre nombre, p.descripcion descripcion, c.nombre categoria, p.img imagen, p.precio precio
-            from producto p inner join categoria c on p.id_categoria = c.id_categoria";
-
-            $productos = $this->db->query($query);
-
-            echo json_encode($productos->result());
-            
-        }
-*/
         public function alta_producto(){
 
             $this->verificar_sesion();
@@ -100,6 +82,22 @@
             $this->load->view('administrador/alta-producto',array('categorias' => $categorias -> result()));
         }
 
+        public function editar_producto($id = null){
+            
+            $this->verificar_sesion();
+                        
+                $categorias = $this->db->query("select * from categoria");
+            
+                $this->db->where(array('id_producto=' => $id));
+                $producto = $this->db->get('producto');
+            
+                $this->load->view('administrador/editar-producto',array(
+                'producto' => $producto->row_array(),
+                'path' => base_url() . $this->path_img_productos, //path para la imagen
+                'categorias' => $categorias->result_array()
+                ));
+        }
+
         //ajuste de valores para carga de archivos
 
         private function subir_foto(){
@@ -107,97 +105,8 @@
             
         }
 
-        public function agregar_producto(){
-
-            $this->verificar_sesion();
-            
-            $config['upload_path'] = './' . $this->path_img_productos;
-            $config['allowed_types'] = 'jpg|png';
-            $config['max_width'] = 0;
-            $config['file_name'] = date("dmYHis",time());
-            //esta configuracion es la que yo le indico, hay muchas mas opciones
-            $this->load->library('upload', $config); //se carga la libreria que corresponde con la configuracion
-           
-            if($this->upload->do_upload('imagen'))
-                $nombreArchivo = $config['file_name'] . $this->upload->data('file_ext');
-            else
-                $nombreArchivo = null;
-            
-            $this->db->insert('producto', array(
-                'nombre' => $this->input->post('nombre'),
-                'descripcion' => $this->input->post('descripcion'),
-                'id_categoria' => $this->input->post('categoria'),
-                'precio' => $this->input->post('precio'),
-                'img' => $nombreArchivo
-            ));
-
-            redirect('admin/productos');
-            
-        }
-
-        public function editar_producto($id = null){
-
-            $this->verificar_sesion();
-
-             
-
-            $categorias = $this->db->query("select * from categoria");
-
-            $this->db->where(array('id_producto=' => $id));
-            $producto = $this->db->get('producto');
-
-            $this->load->view('administrador/editar-producto',array(
-                'producto' => $producto->row_array(),
-                'path' => base_url() . $this->path_img_productos, //path para la imagen
-                'categorias' => $categorias->result_array()
-                ));
-        }
-
-        public function actualizar_producto($id){
-
-            $this->verificar_sesion();
-
-            $carpeta_imagenes = './' . $this->path_img_productos;
-
-            if($id == null)
-                redirect('productos');
-
-            $config['upload_path'] = './' . $this->path_img_productos;
-            $config['allowed_types'] = 'jpg|png';
-            $config['max_width'] = 0;
-            $config['file_name'] = $this->input->post('img_actual');
-            $config['overwrite'] = true;
-                //esta configuracion es la que yo le indico, hay muchas mas opciones
-            $this->load->library('upload', $config); //se carga la libreria que corresponde con la configuracion
-            $this->upload->do_upload('imagen');
-
-            $this->db->where(array('id_producto' => $id));
-            $this->db->update("producto",array(
-                'nombre'=> $this->input->post('nombre'),
-                'descripcion'=> $this->input->post('descripcion'),
-                'id_categoria'=> $this->input->post('categoria'),
-                //'img'=> $this->input->post('img'),
-                'precio'=> $this->input->post('precio')
-            ));
-            
-            redirect('admin/productos');
-        }
-
-        public function eliminar_producto($id){
-
-             $this->verificar_sesion();
-
-             $this->db->where(array('id_producto' => $id));
-             $producto = $this->db->get('producto');
-
-             unlink('./' . $this->path_img_productos . $producto->row()->img);
-
-             $this->db->where(array('id_producto' => $id));
-             $this->db->delete("producto");
-
-             redirect('admin/productos');
-        }
-
+        
+        //
         public function categorias(){
 
             $this->verificar_sesion();
@@ -212,7 +121,7 @@
             $this->verificar_sesion();
             $this->load->view('administrador/cambiar-datos');
         }
-
+        //-
         public function update_datos(){
 
             $this->verificar_sesion();

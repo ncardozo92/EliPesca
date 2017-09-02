@@ -7,7 +7,9 @@
 					</a>
 				</div>
 				<div class="boton-menu col-xs-2 col-xs-push-2">
-					<h3 class="text-center"><span class="glyphicon glyphicon-menu-hamburger"></span></h3>
+					<button class="btn" type="button">
+						<span class="glyphicon glyphicon-menu-hamburger text-center"></span>
+					</button>
 				</div>
 			</div>
 		</div>

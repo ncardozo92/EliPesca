@@ -18,7 +18,7 @@ header,.nav>li>a{
 }
 
 .logo{
-    width: 100%;
+    height: 50px;
 }
 
 .nav>li>a{
@@ -47,9 +47,9 @@ header,nav{
     border: none;
 }
 
-.btn:focus{
+.btn:focus, .btn:hover{
 
-    color: #fff;
+    color: #fff !important;
 
 }
 
@@ -69,6 +69,15 @@ section{
     
 }
 
+[title="excursion"]{
+
+    width: 100%;
+    margin: 15px 0px;
+}
+
+
+
+
 #about{
     margin-top: 20px;
     color: rgb(255,255,255);
@@ -79,6 +88,7 @@ footer{
     height: 40px;
     background-color: #282c37;
     text-align: center;
+    margin-top: 20px;
     
 }
 
@@ -149,17 +159,7 @@ footer p{
     margin: 0% 25%;
     margin-bottom: 15px;
 }
-.novedad img{
 
-    width: 80% !important;
-    margin: 0% 10% 0% 10% !important;
-}
-/*
-.producto a,.novedad a,.producto a:active,.novedad a:active{
-    text-decoration: none;
-    color: #000;
-}
-*/
 .boton-menu{
         display: none;
     }
@@ -181,15 +181,7 @@ footer p{
         height: 100% !important;
         cursor: pointer;
     }
-
-    nav{
-        display: none;
-    }
-    /*
-    .producto{
-        height: 100px;
-    }
-    */
+    
     p.descripcion-articulo{
         font-size: 16pt;
     }
@@ -197,6 +189,12 @@ footer p{
     .label-info{
         width: 100%;
     }
+    
+    nav{
+
+        display: none;
+    }
+    
 }
 
 

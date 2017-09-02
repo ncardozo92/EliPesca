@@ -80,6 +80,12 @@ class CI_Controller {
 		log_message('info', 'Controller Class Initialized');
 	}
 
+	public function verificar_sesion(){
+		
+		if($this->session->has_userdata('id') == false)
+			redirect('admin');
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
