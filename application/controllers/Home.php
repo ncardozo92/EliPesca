@@ -12,9 +12,6 @@
             $this->load->view("cliente/contacto");
         }
 
-        public function excursiones(){
-
-            $this->load->view("cliente/excursiones");
-        }
+        
     }
 ?>

@@ -21,7 +21,7 @@
         }
         public function cerrar_sesion(){
 
-            $this->session->unset_userdata(array('id','usuario'));
+            $this->session->sess_destroy();
             redirect('admin');
         }
 
@@ -65,8 +65,6 @@
                 $this->db->like("p.nombre", $filtro );
             
             $productos = $this->db->get()->result();
-
-            //logica para el filtrado por nombre
             $this->load->view("administrador/productos-admin",
                 array("productos"=>$productos,
                         "path_img_productos"=>$this->path_img_productos,

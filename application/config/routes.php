@@ -58,7 +58,7 @@ $route['actualizar_producto/(:num)'] = 'admin/actualizar_producto/$id'; //actual
 //rutas para clientes
 $route["home"] = "home";
 $route["contacto"] = "home/contacto";
-$route["excursiones"] = "home/excursiones";
+$route["excursiones"] = "excursiones/index";
 
 $route['productos'] = 'producto/catalogo';
-//$route['productos/(:num)'] = 'producto/catalogo/$pagina';
+$route['admin/excursiones'] = 'excursiones/listado_excursiones';

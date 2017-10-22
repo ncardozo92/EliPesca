@@ -47,15 +47,14 @@ header,nav{
     border: none;
 }
 
-.btn:focus, .btn:hover{
 
-    color: #fff !important;
 
-}
+.btn:active, .btn:hover{
 
-.form-group input, .form-group button, .form-group select{
+    color: #2b90d9;
+    background-color: #fff;
+    border: solid 1px #2b90d9;
 
-    width: 100% !important;
 }
 
 section{

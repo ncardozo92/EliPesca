@@ -4,7 +4,7 @@ $(function(){
     var wallPaper = $("#wallpaper");
     var about = $("#about");
 
-    $("section").css("min-height",($(window).height()-$("header").height()-$("footer").height()-menu.height()));
+    $("section").first().css("min-height",($(window).height()-$("header").height()-$("footer").height()));
 
     wallPaper.css({"height" : ($(window).height() - $("header").height() - menu.height())});
 
